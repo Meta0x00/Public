@@ -7,8 +7,8 @@
 ## 选型分析：
 Prometheus & Zabbix  
 首先，观察下二者的架构图
-![alt Prometheus](img/Prometheus架构图.png) 
-![alt Zabbix](img/Zabbix架构图.png)  
+![alt Prometheus](./img/Prometheus架构图.png) 
+![alt Zabbix](./img/Zabbix架构图.png)  
 ### Prometheus：
 - 基于Pull模式
 - 采用TSDB
