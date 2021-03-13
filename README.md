@@ -28,13 +28,17 @@ Prometheus在场景适配上，力压老牌的Zabbix。抛开功能完备性不�
 并不是说，Zabbix不够优秀，时间拨回到Zabbix出生的那个时代，它的设计绝对是非常前卫的，通吃当时的市场。但时间的巨轮一直向前滚动，面对新时代海量的数据，RDB自身的局限性，必然被新生代TSDB所取代。  
 <font color=red size=4>**T^T 科学家说: "要耍就耍时下最前沿的技术~"**</font>  
 # Demo
-<font color=red size=4>**Operations is not roadshow. Let's do it now.**</font>  
-用我个人的云主机：152.32.170.211
-### 1、安装Prometheus
+<font color=red size=4>**Operations is not roadshow. Let's do it now.**</font><br>  
+### 0x00 环境准备
+主机IP：152.32.170.211(我的个人云主机)
+宿主机：CentOS-7
+镜像：Ubuntu20.04官方标准镜像
+
+### 0x01 安装Prometheus
 先创建一个master实例，同时将宿主机的指定目录挂进容器，做为prometheus服务端  
 ![alt master](./img/创建master实例.png)
 进入master，开始安装Prometheus  
-![alt master_1](./img/master-1.png)
+![alt master_1](./img/master-1.png)  
 使用默认配置文件，直接拉起服务  
 ![alt master_2](./img/master_2.png)
 检查端口(prometheus默认端口是9090)，可以看到服务已经通了  
