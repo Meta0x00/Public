@@ -38,9 +38,9 @@ IP：152.32.170.211(我的个人云主机)
 
 ### 0x01 配置master节点(Prometheus主服务)
 先创建一个master实例，做为Prometheus服务端，实例附属宿主机网络
-![alt master](./img/创建master实例.png)
+![alt master_0](./img/master_0.png)
 进入master，开始安装Prometheus  
-![alt master_1](./img/master-1.png)  
+![alt master_1](./img/master_1.png)  
 使用默认配置文件，直接拉起服务  
 ![alt master_2](./img/master_2.png)
 检查端口(默认端口是9090)，可以看到服务已经通了  
