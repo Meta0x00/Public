@@ -1,4 +1,4 @@
-# 记: 基于Ubuntu20.04搭建Prometheus+Grafana,实现容器级监控及可视化
+# 记: 基于Ubuntu20.04构建Prometheus+Grafana,实现容器级监控及可视化
 ## 背景概述: 
 鉴于工作原因，前段时间搭建了一套websocket服务，但在实际部署中发现一些问题。由于网络稳定性原因及诸多不可控因素，经常发生ws连接偶发性中断，但服务本身又没有有效的健康检查机制。这样将对服务稳定性造成严重隐患。所以想着通过寻找引入第三方中间件，完成此任务。  
 (起初，自己在本地写了个Shell脚本，循环监听进程，但毕竟太Low了，像贴膏药一样，根本拿不上台面，而且一旦Saas部署，可行性并不高)  
@@ -26,7 +26,7 @@ Prometheus & Zabbix
 ### 对比综述：  
 Prometheus在场景适配上，力压老牌的Zabbix。抛开功能完备性不谈(报警、聚合分析、数据渲染等)，瓶颈主要在DB。Zabbix默认使用常规的RDB，面对多写少读的真实监控场景，当QPS达到峰值(官方说是单机上限5000台)，RDB在IO处理上，必然影响整个系统的吞吐量，是性能的瓶颈。此时，Prometheus的时序库，完美适配了此种监控场景所需，虽然不及关系库检索时便捷，但重在时效性，碾压了各路SQL、NoSQL队友，使其在该领域脱颖而出。  
 并不是说，Zabbix不够优秀，时间拨回到Zabbix出生的那个时代，它的设计绝对是非常前卫的，通吃当时的市场。但时间的巨轮一直向前滚动，面对新时代海量的数据，RDB自身的局限性，必然被新生代TSDB所取代。  
-<font color=red size=4>**T^T 科学家说: "要耍就耍时下最前沿的技术~"**</font>  
+<font color=red size=4>**T^T 毛主席说:"落后就要挨打！" 所以我用最新技术栈~**</font>  
 # Demo
 <font color=red size=4>**Operations is not roadshow. Let's do it now.**</font><br>  
 ### 0x00 环境准备
@@ -44,7 +44,7 @@ IP：152.32.170.211(我的个人云主机)
 检查端口(默认端口是9090)，可以看到服务已经通了  
 ![alt master_3](./img/master_3.png)
 通过浏览器访问一下试试(emm......不错......通了!)  
-![alt master_4](./img/master_4.png)
+![alt master_4](./img/master_4.png)  
 默认监控本机，再看下数据情况(emm......不错......有了!)  
 ![alt master_3](./img/master_5.png)
 ![alt master_3](./img/master_6.png)
@@ -67,5 +67,22 @@ IP：152.32.170.211(我的个人云主机)
 ![alt remaster_3](./img/remaster_3.png)  
 通过浏览器访问，可以看到两个节点的服务都能够被发现了  
 ![alt remaster_4](./img/remaster_4.png)  
-### 0x004 
-完善中......
+### 0x04 安装Grafana
+(因为镜像用的ubuntu，没找到deb的安装包。这里直接用rpm包在centos宿主机上跑了)  
+![alt grafana_1](./img/grafana_1.png)  
+![alt grafana_2](./img/grafana_2.png)  
+启动服务
+看一眼端口，确认下(emm......通了！)  
+![alt grafana_3](./img/grafana_3.png)  
+浏览器登陆，并添加prometheus数据源  
+![alt grafana_4](./img/grafana_4.png)  
+![alt grafana_5](./img/grafana_5.png)  
+给添加好的数据源，做图形展示  
+![alt grafana_6](./img/grafana_6.png)  
+![alt grafana_7](./img/grafana_7.png)  
+![alt grafana_8](./img/grafana_8.png)  
+![alt grafana_9](./img/grafana_9.png)  
+![alt grafana_10](./img/grafana_10.png)  
+![alt grafana_11](./img/grafana_11.png)  
+**至此，Prometheus+Grafana搭建完成**  
+<font color=red size=4>**（Onealert报警实现，后续我会陆续补充，敬请期待...）**</font>  
