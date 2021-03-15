@@ -1,4 +1,4 @@
-##### <font color=red>(若图片无法加载，请配置本地hosts文件，......或者直接科学上网！)</font>
+##### <font color=red>(若图片无法加载，请配置本地hosts文件，重新声明DNS，......或者直接科学上网！)</font>
 # 记: 基于Ubuntu20.04构建Prometheus+Grafana,实现容器级监控及可视化
 ## 背景概述: 
 鉴于工作原因，前段时间搭建了一套websocket服务，但在实际部署中发现一些问题。由于网络稳定性原因及诸多不可控因素，经常发生ws连接偶发性中断，但服务本身又没有有效的健康检查机制。这样将对服务稳定性造成严重隐患。所以想着通过寻找引入第三方中间件，完成此任务。  
@@ -9,8 +9,8 @@
 ## 选型分析：
 Prometheus & Zabbix  
 首先，观察下二者的结构图
-![alt Prometheus](./img/Prometheus%E6%9E%B6%E6%9E%84%E5%9B%BE.png)  
-![alt Zabbix](./img/Zabbix%E6%9E%B6%E6%9E%84%E5%9B%BE.png)  
+![alt Prometheus](./img/Prometheus%E6%9E%B6%E6%9E%84%E5%9B%BE.png)    
+![alt Zabbix](./img/Zabbix%E6%9E%B6%E6%9E%84%E5%9B%BE.png)   
 ### Prometheus：
 - 基于Pull模式
 - 采用TSDB
