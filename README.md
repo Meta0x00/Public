@@ -6,7 +6,7 @@
 <font color=red size=4>**T^T 咳咳，故事就这样开始了......**</font>
 ## 选型分析：
 Prometheus & Zabbix  
-首先，观察下二者的架构图
+首先，观察下二者的结构图
 ![alt Prometheus](./img/Prometheus%E6%9E%B6%E6%9E%84%E5%9B%BE.png)  
 ![alt Zabbix](./img/Zabbix%E6%9E%B6%E6%9E%84%E5%9B%BE.png)  
 ### Prometheus：
@@ -25,8 +25,8 @@ Prometheus & Zabbix
 - 对聚合数据分析及UI展示，支持欠佳  
 ### 对比综述：  
 Prometheus在场景适配上，力压老牌的Zabbix。抛开功能完备性不谈(报警、聚合分析、数据渲染等)，瓶颈主要在DB。Zabbix默认使用常规的RDB，面对多写少读的真实监控场景，当QPS达到峰值(官方说是单机上限5000台)，RDB在IO处理上，必然影响整个系统的吞吐量，是性能的瓶颈。此时，Prometheus的时序库，完美适配了此种监控场景所需，虽然不及关系库检索时便捷，但重在时效性，碾压了各路SQL、NoSQL队友，使其在该领域脱颖而出。  
-并不是说，Zabbix不够优秀，时间拨回到Zabbix出生的那个时代，它的设计绝对是非常前卫的，通吃当时的市场。但时间的巨轮一直向前滚动，面对新时代海量的数据，RDB自身的局限性，必然被新生代TSDB所取代。  
-<font color=red size=4>**T^T 毛主席说:"落后就要挨打！" 所以我用最新技术栈~**</font>  
+并不是说，Zabbix不够优秀，时间拨回到Zabbix出生的那个时代，它的设计绝对是非常前卫的，通吃当时的市场，但同时其也背负了太多历史的包袱。时间的巨轮一直向前滚动，面对新时代海量的数据，RDB自身的局限性，必然被新生代TSDB所取代。  
+<font color=red size=4>**T^T 毛主席说:"落后就要挨打！" 所以我们还是用最新技术栈吧~**</font>  
 # Demo
 <font color=red size=4>**Operations is not roadshow. Let's do it now.**</font><br>  
 ### 0x00 环境准备
@@ -85,4 +85,4 @@ IP：152.32.170.211(我的个人云主机)
 ![alt grafana_10](./img/grafana_10.png)  
 ![alt grafana_11](./img/grafana_11.png)  
 **至此，Prometheus+Grafana搭建完成**  
-<font color=red size=4>**（Onealert报警实现，后续我会陆续补充，敬请期待...）**</font>  
+<font color=red size=4>**（Onealert报警实现及消息推送，后续我会陆续补充，敬请期待......）**</font>  
