@@ -53,7 +53,7 @@ IP：152.32.170.211(我的个人云主机)
 ### 0x02 配置slave节点(Exporter服务)
 创建slave实例，做为Exporter服务，把宿主机目录也挂进去  
 ![alt slave_1](./img/slave_1.png)  
-安装exporter(导包侠，无脑拆就行了...)  
+安装exporter(导包侠，无脑拆包就行了...)  
 ![alt slave_2](./img/slave_2.png)  
 拉起服务  
 ![alt slave_3](./img/slave_3.png) 
