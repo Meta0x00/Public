@@ -53,7 +53,7 @@ mv /usr/local/prometheus-2.5.0.linux-amd64 /usr/local/prometheus
 使用默认配置文件，直接拉起服务  
 ![alt master_2](./img/master_2.png)  
 ```
-/usr/local/prometheus/prometheus --config.file="/usr/local/prometheus/prometheus.yml &"
+/usr/local/prometheus/prometheus --config.file="/usr/local/prometheus/prometheus.yml" &
 ```
 检查端口(默认端口是9090)，可以看到服务已经通了  
 ![alt master_3](./img/master_3.png)  
@@ -68,23 +68,40 @@ lsof -i:9090
 ### 0x02 配置slave节点(Exporter服务)
 创建slave实例，做为Exporter服务，把宿主机目录也挂进去  
 ![alt slave_1](./img/slave_1.png)  
+```
+docker run -itd --name='slave' --network host -v /home/ray/prometheus_ex:/etc/root/prometheus <CONTAINER ID>  /bin/bash
+docker exec -it <CONTAINER ID> /bin/bash
+```
 安装exporter(导包侠，无脑拆包就行了...)  
 ![alt slave_2](./img/slave_2.png)  
+```
+tar -xzvf node_exporter-0.16.0.linux-amd64.tar.gz -C /usr/local/
+mv /usr/local/node_exporter-0.16.0.linux-amd64 /usr/local/node_exporter/
+``` 
 拉起服务  
 ![alt slave_3](./img/slave_3.png)  
 ```
-nohup /usr/local/node_exporter/node_exporter/node_exporter &
+nohup /usr/local/node_exporter/node_exporter &
 ```
 检查端口(默认为9100)  
 ![alt slave_4](./img/slave_4.png)  
+```
+lsof -i:9100
+```
 通过浏览器访问一下试试(emm......不错......有数据！)  
 ![alt slave_5](./img/slave_5.png)  
 ### 0x03 回到master节点，在监控对象中，加入slave节点
 在配置文件中加入slave节点信息  
 ![alt remaster_1](./img/remaster_1.png)  
 ![alt remaster_2](./img/remaster_2.png)  
+```
+vim /usr/local/prometheus/prometheus.yml
+```
 重启服务  
 ![alt remaster_3](./img/remaster_3.png)  
+```
+/usr/local/prometheus/prometheus --config.file="/usr/local/prometheus/prometheus.yml" &
+```
 通过浏览器访问，可以看到两个节点的服务都能够被发现了  
 ![alt remaster_4](./img/remaster_4.png)  
 ### 0x04 安装Grafana
@@ -99,6 +116,9 @@ sudo systemctl enable grafane-server
 启动服务
 看一眼端口，确认下(emm......通了！)  
 ![alt grafana_3](./img/grafana_3.png)  
+```
+lsof -i:3000
+```
 浏览器登陆，并添加prometheus数据源  
 ![alt grafana_4](./img/grafana_4.png)  
 ![alt grafana_5](./img/grafana_5.png)  
