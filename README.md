@@ -39,13 +39,27 @@ IP：152.32.170.211(我的个人云主机)
 
 ### 0x01 配置master节点(Prometheus主服务)
 先创建一个master实例，做为Prometheus服务端，实例附属宿主机网络
-![alt master_0](./img/master_0.png)
+![alt master_0](./img/master_0.png)  
+```
+docker run -itd --name='master' --network host -v /home/ray/prometheus_ex:/etc/root/prometheus <CONTAINER ID>  /bin/bash
+docker exec -it <CONTAINER ID> /bin/bash
+```
 进入master，开始安装Prometheus  
 ![alt master_1](./img/master_1.png)  
+```
+tar -xzvf prometheus-2.5.0.linux-amd64.tar.gz -C /usr/local
+mv /usr/local/prometheus-2.5.0.linux-amd64 /usr/local/prometheus
+```
 使用默认配置文件，直接拉起服务  
-![alt master_2](./img/master_2.png)
+![alt master_2](./img/master_2.png)  
+```
+/usr/local/prometheus/prometheus --config.file="/usr/local/prometheus/prometheus.yml &"
+```
 检查端口(默认端口是9090)，可以看到服务已经通了  
-![alt master_3](./img/master_3.png)
+![alt master_3](./img/master_3.png)  
+```
+lsof -i:9090
+```
 通过浏览器访问一下试试(emm......不错......通了!)  
 ![alt master_4](./img/master_4.png)  
 默认监控本机，再看下数据情况(emm......不错......有了!)  
@@ -57,7 +71,10 @@ IP：152.32.170.211(我的个人云主机)
 安装exporter(导包侠，无脑拆包就行了...)  
 ![alt slave_2](./img/slave_2.png)  
 拉起服务  
-![alt slave_3](./img/slave_3.png) 
+![alt slave_3](./img/slave_3.png)  
+```
+nohup /usr/local/node_exporter/node_exporter/node_exporter &
+```
 检查端口(默认为9100)  
 ![alt slave_4](./img/slave_4.png)  
 通过浏览器访问一下试试(emm......不错......有数据！)  
@@ -74,6 +91,11 @@ IP：152.32.170.211(我的个人云主机)
 (因为镜像用的ubuntu，没找到deb的安装包。这里直接用rpm包在centos宿主机上跑了)  
 ![alt grafana_1](./img/grafana_1.png)  
 ![alt grafana_2](./img/grafana_2.png)  
+```
+sudo rpm -ivh ./grafana-5.3.4-1.x86_64.rpm
+sudo systemctl start grafana-server
+sudo systemctl enable grafane-server
+```
 启动服务
 看一眼端口，确认下(emm......通了！)  
 ![alt grafana_3](./img/grafana_3.png)  
