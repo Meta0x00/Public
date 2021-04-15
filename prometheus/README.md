@@ -119,6 +119,7 @@ sudo systemctl enable grafane-server
 ```
 lsof -i:3000
 ```
+注：默认用户名和密码都是 admin  
 浏览器登陆，并添加prometheus数据源  
 ![alt grafana_4](./img/grafana_4.png)  
 ![alt grafana_5](./img/grafana_5.png)  
