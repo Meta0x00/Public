@@ -77,3 +77,4 @@ pkill prometheus
 ```
 /usr/local/prometheus/prometheus --config.file="/usr/local/prometheus/prometheus.yml" &
 ```
+![alt postgresl_14](./img/postgresql_14.png)
