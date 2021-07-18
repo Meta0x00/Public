@@ -1,3 +1,4 @@
+##### <font color=red>(若图片无法加载，请配置本地hosts文件，重新声明DNS，......或者直接科学上网！)</font>
 # 《基于Ubuntu20.04实现grpc-go》
 ## 0x01 概述
 ```
