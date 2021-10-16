@@ -14,8 +14,8 @@ System Bus：系统总线。指连接CPU和系统内存的总线，系统中最�
 Local Bus：局部总线。指系统中各组件之间信号传递的总线，通过桥接器集成进系统总线；包括PCI、USB等
 ### 1.2 发展历程
 PCI总线是有ISA总线发展而来的，ISA总线只能支持位宽8位和16位，且时钟频率为8MHz。而后IBM研发32位EISA，频率8MHz，带宽32Mb/s。
-随着CPU计算能力的提高，总线带宽成为传输瓶颈。Inetl研发PCI总线，支持位宽32位和64位，频率33MHz，带宽阈值264Mb/s。
-![alt 发展历程](./img/发展历程.png)
+随着CPU计算能力的提高，总线带宽成为传输瓶颈。Inetl研发PCI总线，支持位宽32位和64位，频率33MHz，带宽阈值264Mb/s。  
+![alt 发展历程](./img/发展历程.png)  
 ## 2.PCI/PCIe如何运行
 1> 打开机箱，插入网卡
 2> 关上机箱，上电
@@ -31,13 +31,13 @@ PCI总线是有ISA总线发展而来的，ISA总线只能支持位宽8位和16�
 12> 来自网卡的数字数据通过PCI总线传输至总线控制器。控制器决定各外围设备访问CPU的权重，及发送给CPU或直接写入内存
 13> 系统总线将来自网卡的数字数据，写入系统内存，供上层系统调度
 ## 3.PCI/PCIe架构
-### 3.1 PCI架构
-![alt PCI架构](./img/PCI架构.png)
-### 3.2 PCIe架构
-![alt PCIe架构](./img/PCIe架构.png)
+### 3.1 PCI架构  
+![alt PCI架构](./img/PCI架构.png)  
+### 3.2 PCIe架构  
+![alt PCIe架构](./img/PCIe架构.png)  
 ## 4.TLP寻址算法
-PCI扫描，本质是按深度优先算法枚举二叉树，即TLP寻址
-![alt 二叉树](./img/二叉树.png)
+PCI扫描，本质是按深度优先算法枚举二叉树，即TLP寻址  
+![alt 二叉树](./img/二叉树.png)  
 ![alt P2P](./img/P2P.png)  
 1、图示为Bridge设备，接收到的TLP报文结构，并存储于相应寄存器中。
         Primary Bus Number记录上级总线号，Secondary Bus Number记录当前层级总线号，Subordinate Bus Number记录下一层级的最大总线号
